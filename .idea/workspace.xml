@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8aa3d17b-53c3-412d-94b1-d71788bae285" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/triplcurse/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/triplcurse/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/triplcurse/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/triplcurse/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +90,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1764938931825</updated>
-      <workItem from="1764938951736" duration="4547000" />
+      <workItem from="1764938951736" duration="4867000" />
     </task>
     <servers />
   </component>

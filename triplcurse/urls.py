@@ -13,6 +13,11 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('applications/', views.user_applications, name='user_applications'),
     path('applications/create/', views.create_application, name='create_application'),
+    path('applications/', views.user_applications, name='user_applications'),
+    path('applications/create/', views.create_application, name='create_application'),
     path('applications/delete/<int:app_id>/', views.delete_application, name='delete_application'),
+    path('superadmin/', views.admin_dashboard, name='admin_dashboard'),
+    path('superadmin/application/<int:app_id>/update/', views.update_application_status, name='update_application_status'),
+    path('superadmin/categories/manage/', views.manage_categories, name='manage_categories'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
