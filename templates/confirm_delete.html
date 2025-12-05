@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Подтверждение удаления</h2>
+<p>Вы действительно хотите удалить заявку "{{ application.title }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Да, удалить</button>
+</form>
+<a href="{% url 'user_applications' %}">Отмена</a>
+{% endblock %}

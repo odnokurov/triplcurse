@@ -10,5 +10,9 @@ urlpatterns = [
     path('register/', views.user_register, name='register'),
     path('superadmin/', admin.site.urls),
     path('catalog/', RedirectView.as_view(pattern_name='home'), name='catalog-redirect'),
+    path('logout/', views.user_logout, name='logout'),
+    path('applications/', views.user_applications, name='user_applications'),
+    path('applications/create/', views.create_application, name='create_application'),
+    path('applications/delete/<int:app_id>/', views.delete_application, name='delete_application'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
