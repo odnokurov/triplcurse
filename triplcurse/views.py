@@ -1,13 +1,23 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
 from .models import Application, Category
+from .forms import UserRegistrationForm
+from django.contrib.auth.models import User
 
 def home(request):
-    return render(request, 'triplcurse/home.html')
+    completed_applications = Application.objects.filter(
+        status='completed'
+    ).order_by('-created_at')[:4]
+
+    in_progress_count = Application.objects.filter(status='in_progress').count()
+
+    return render(request, 'triplcurse/home.html', {
+        'completed_applications': completed_applications,
+        'in_progress_count': in_progress_count,
+    })
 
 def user_login(request):
     if request.method == 'POST':
@@ -25,13 +35,18 @@ def user_register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, "Регистрация прошла успешно. Вы можете войти.")
+            user = User.objects.create_user(
+                username=form.cleaned_data['username'],
+                email=form.cleaned_data['email'],
+                password=form.cleaned_data['password']
+            )
+            user.first_name = form.cleaned_data['full_name']
+            user.save()
+            messages.success(request, "Регистрация прошла успешно. Теперь вы можете войти.")
             return redirect('login')
-        else:
-            pass
     else:
         form = UserRegistrationForm()
+
     return render(request, 'triplcurse/register.html', {'form': form})
 
 

@@ -1,15 +1,42 @@
 {% extends 'triplcurse/base.html' %}
-{% block content %}
-<h1>Главная страница Design.pro</h1>
-<p>Добро пожаловать! Здесь вы можете увидеть последние выполненные проекты.</p>
 
-{% if user.is_authenticated %}
-    <p>Вы вошли как: {{ user.username }} | <a href="{% url 'logout' %}">Выход</a></p>
-    <a href="{% url 'user_profile' %}">Личный кабинет</a>
-    <p>Привет, {{ user.first_name|default:user.username }}!</p>
-    <a href="{% url 'user_applications' %}">Мои заявки</a> |
-    <a href="{% url 'logout' %}">Выход</a>
+{% block content %}
+<h1 class="mb-4">Design.pro — Дизайн интерьеров</h1>
+    
+<div class="alert alert-warning">
+    <strong>Заявок в работе:</strong> {{ in_progress_count }}
+</div>
+    
+<h2 class="mb-3">Последние выполненные проекты</h2>
+{% if completed_applications %}
+    <div class="row">
+    {% for app in completed_applications %}
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card">
+                {% if app.design_image %}
+                    <img src="{{ app.design_image.url }}" class="card-img-top" alt="Готовый дизайн" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <div class="card-header text-muted">Изображение отсутствует</div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ app.title }}</h5>
+                    <p class="card-text">
+                        <small class="text-muted">{{ app.created_at|date:"d.m.Y" }}</small><br>
+                        Категория: {{ app.category }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 {% else %}
-    <a href="{% url 'login' %}">Вход</a> | <a href="{% url 'register' %}">Регистрация</a>
+    <p class="text-muted">Нет выполненных проектов.</p>
+{% endif %}
+
+{% if not user.is_authenticated %}
+    <div class="mt-4">
+        <a href="{% url 'login' %}" class="btn btn-outline-primary">Вход</a>
+        <a href="{% url 'register' %}" class="btn btn-primary">Регистрация</a>
+    </div>
 {% endif %}
 {% endblock %}

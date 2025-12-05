@@ -5,20 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8aa3d17b-53c3-412d-94b1-d71788bae285" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/triplcurse/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_dashboard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/confirm_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/confirm_delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/create_application.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/create_application.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_applications.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/user_applications.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/triplcurse/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/triplcurse/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/triplcurse/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/triplcurse/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/triplcurse/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/triplcurse/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/triplcurse/user_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/user_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/triplcurse/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/triplcurse/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +105,7 @@
       <updated>1764938931825</updated>
       <workItem from="1764938951736" duration="9162000" />
       <workItem from="1764954054720" duration="1513000" />
-      <workItem from="1764955745638" duration="2392000" />
+      <workItem from="1764955745638" duration="5558000" />
     </task>
     <servers />
   </component>

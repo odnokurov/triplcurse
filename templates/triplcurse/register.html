@@ -1,10 +1,64 @@
 {% extends 'triplcurse/base.html' %}
+
 {% block content %}
 <h2>Регистрация</h2>
-<form method="post">
+
+<form method="post" class="row g-3">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
+    
+    <div class="col-md-12">
+        <label class="form-label">{{ form.full_name.label }}</label>
+        <input type="text" name="{{ form.full_name.name }}" class="form-control" value="{{ form.full_name.value|default:'' }}">
+        {% if form.full_name.errors %}
+            <div class="text-danger">{{ form.full_name.errors|join:", " }}</div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">{{ form.username.label }}</label>
+        <input type="text" name="{{ form.username.name }}" class="form-control" value="{{ form.full_name.value|default:'' }}">
+        {% if form.username.errors %}
+            <div class="text-danger">{{ form.username.errors|join:", " }}</div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">{{ form.email.label }}</label>
+        <input type="text" name="{{ form.email.name }}" class="form-control" value="{{ form.full_name.value|default:'' }}">
+        {% if form.email.errors %}
+            <div class="text-danger">{{ form.email.errors|join:", " }}</div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">{{ form.password.label }}</label>
+        <input type="text" name="{{ form.password.name }}" class="form-control" value="{{ form.full_name.value|default:'' }}">
+        {% if form.password.errors %}
+            <div class="text-danger">{{ form.password.errors|join:", " }}</div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">{{ form.password2.label }}</label>
+        <input type="text" name="{{ form.password2.name }}" class="form-control" value="{{ form.full_name.value|default:'' }}">
+        {% if form.password2.errors %}
+            <div class="text-danger">{{ form.password2.errors|join:", " }}</div>
+        {% endif %}
+    </div>
+
+    <div class="col-12">
+        <div class="form-check">
+            {{ form.consent }}
+            <label class="form-check-label">{{ form.consent.label }}</label>
+            {% if form.consent.errors %}
+                <div class="text-danger">Обязательно для согласия!</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+        <a href="{% url 'login' %}" class="btn btn-link">Уже есть аккаунт?</a>
+    </div>
 </form>
-<a href="{% url 'login' %}">Уже есть аккаунт?</a>
 {% endblock %}

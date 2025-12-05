@@ -2,16 +2,29 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
+from django.core.validators import RegexValidator
+
+full_name_validator = RegexValidator(
+    regex=r'^[а-яА-ЯёЁ\s\-]+$',
+    message="ФИО должно содержать только кириллические буквы, пробелы и дефисы."
+)
+
+username_validator = RegexValidator(
+    regex=r'^[a-zA-Z\-]+$',
+    message="Логин должен содержать только латинские буквы и дефис."
+)
 
 class UserRegistrationForm(forms.Form):
     full_name = forms.CharField(
         max_length=100,
         label="ФИО",
+        validators=[full_name_validator],
         widget=forms.TextInput(attrs={"placeholder": "Иванов Иван Иванович"})
     )
     username = forms.CharField(
         max_length=50,
         label="Логин",
+        validators=[username_validator],
         widget=forms.TextInput(attrs={"placeholder": "ivanov-ivan"})
     )
     email = forms.EmailField(
@@ -31,6 +44,18 @@ class UserRegistrationForm(forms.Form):
         label="Согласие на обработку персональных данных"
     )
 
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError("Пользователь с таким логином уже существует.")
+        return username
+
+    def clean_password2(self):
+        p1 = self.cleaned_data.get('password')
+        p2 = self.cleaned_data.get('password2')
+        if p1 and p2 and p1 != p2:
+            raise forms.ValidationError("Пароли не совпадают.")
+        return p2
     def clean_full_name(self):
         full_name = self.cleaned_data['full_name']
         if not re.fullmatch(r"[а-яА-ЯёЁ\s\-]+", full_name):

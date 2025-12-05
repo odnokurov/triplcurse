@@ -1,46 +1,63 @@
 {% extends 'triplcurse/base.html' %}
+
 {% block content %}
-<h1>Личный кабинет</h1>
-
-<p>Здравствуйте, {{ user.first_name|default:user.username }}!</p>
-
-<form method="get" style="margin: 1em 0;">
-    <label>Показать заявки:</label>
-    <select name="status" onchange="this.form.submit()">
-        <option value="">Все</option>
-        <option value="new" {% if status_filter == 'new' %}selected{% endif %}>Новые</option>
-        <option value="in_progress" {% if status_filter == 'in_progress' %}selected{% endif %}>Принято в работу</option>
-        <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Выполнено</option>
-    </select>
+<h1>Мои заявки</h1>
+    
+<form method="get" class="row mb-3">
+    <div class="col-auto">
+        <label for="status">Показать:</label>
+    </div>
+    <div class="col-auto">
+        <select name="status" class="form-select" onchange="this.form.submit()">
+            <option value="">Все</option>
+            <option value="new" {% if status_filter == 'new' %}selected{% endif %}>Новые</option>
+            <option value="in_progress" {% if status_filter == 'in_progress' %}selected{% endif %}>Принято в работу</option>
+            <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Выполнено</option>
+        </select>
+    </div>
 </form>
 
 {% if applications %}
-    <h2>Ваши заявки</h2>
+    <div class="list-group">
     {% for app in applications %}
-        <div style="border: 1px solid #ddd; padding: 12px; margin: 10px 0; border-radius: 4px;">
-            <strong>{{ app.title }}</strong><br>
-            Дата: {{ app.created_at|date:"d.m.Y H:i" }}<br>
+        <div class="list-group-item">
+            <div class="d-flex justify-content-between">
+                <h5>{{ app.title }}</h5>
+                <span class="badge {% if app.status == 'new' %}bg-secondary
+                    {% elif app.status == 'in_progress' %}bg-warning text-dark
+                    {% elif app.status == 'completed' %}bg-success
+                    {% endif %}">
+                    {{ app.get_status_display }}
+                </span>
+            </div>
+            <small class="text-muted">Дата: {{ app.created_at|date:"d.m.Y H:i" }}</small><br>
             Категория: {{ app.category }}<br>
-            Статус: {{ app.get_status_display }}<br>
             Описание: {{ app.description|truncatewords:20 }}
+
             {% if app.image %}
-                <br><img src="{{ app.image.url }}" alt="План помещения" width="150" style="margin-top: 8px;">
+                <div class="mt-2">
+                    <img src="{{ app.image.url }}" class="img-thumbnail" width="150">
+                </div>
             {% endif %}
 
             {% if app.status == 'new' %}
-                <form method="post" action="{% url 'delete_application' app.id %}" style="display:inline; margin-left:10px;">
+                <form method="post" action="{% url 'delete_application' app.id %}" class="d-inline">
                     {% csrf_token %}
-                    <button type="submit" onclick="return confirm('Удалить заявку?')">Удалить</button>
+                    <button type="submit" class="btn btn-sm btn-outline-danger mt-2"
+                            onclick="return confirm('Удалить заявку?')">
+                        Удалить
+                    </button>
                 </form>
             {% endif %}
         </div>
     {% endfor %}
+    </div>
 {% else %}
-    <p>У вас пока нет заявок.</p>
+    <p class="text-muted">У вас пока нет заявок.</p>
 {% endif %}
 
-<p>
-    <a href="{% url 'create_application' %}">Создать новую заявку</a> |
-    <a href="{% url 'logout' %}">Выход</a>
-</p>
+<div class="mt-3">
+    <a href="{% url 'create_application' %}" class="btn btn-primary">Создать заявку</a>
+    <a href="{% url 'logout' %}" class="btn btn-outline-secondary">Выход</a>
+</div>
 {% endblock %}
