@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8aa3d17b-53c3-412d-94b1-d71788bae285" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/triplcurse/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin_dashboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/confirm_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/confirm_delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create_application.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/create_application.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_applications.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/triplcurse/user_applications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/triplcurse/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/triplcurse/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/triplcurse/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/triplcurse/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/triplcurse/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,9 +37,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="36QVlN7yxjXKG2vRpc2wOXloXzD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -38,7 +51,8 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "django.template.preview.state": "SHOW_EDITOR",
     "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -48,6 +62,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\odnokurov\PycharmProjects\triplcurse\templates\triplcurse" />
+      <recent name="C:\Users\odnokurov\PycharmProjects\triplcurse\templates\stuff" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="triplcurse" type="Python.DjangoServer" factoryName="Django server">
       <module name="triplcurse" />
@@ -90,7 +110,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1764938931825</updated>
-      <workItem from="1764938951736" duration="4867000" />
+      <workItem from="1764938951736" duration="9162000" />
+      <workItem from="1764954054720" duration="1513000" />
+      <workItem from="1764955745638" duration="2392000" />
     </task>
     <servers />
   </component>

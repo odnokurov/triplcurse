@@ -1,0 +1,40 @@
+{% extends 'triplcurse/base.html' %}
+{% block content %}
+<h1>Создать заявку на дизайн</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <p>
+        <label><strong>Название:</strong></label><br>
+        <input type="text" name="title" value="{{ request.POST.title }}" required>
+    </p>
+
+    <p>
+        <label><strong>Описание:</strong></label><br>
+        <textarea name="description" rows="4" required>{{ request.POST.description }}</textarea>
+    </p>
+
+    <p>
+        <label><strong>Категория:</strong></label><br>
+        <select name="category" required>
+            <option value="">-- Выберите категорию --</option>
+            {% for cat in categories %}
+                <option value="{{ cat.id }}" {% if request.POST.category == cat.id|stringformat:"s" %}selected{% endif %}>
+                    {{ cat.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>
+        <label><strong>Изображение (план/фото помещения):</strong></label><br>
+        <input type="file" name="image" accept=".jpg,.jpeg,.png,.bmp" required>
+        <br><small>Форматы: jpg, jpeg, png, bmp. Макс. размер: 2 МБ.</small>
+    </p>
+
+    <button type="submit">Создать заявку</button>
+</form>
+
+<p><a href="{% url 'user_profile' %}">← Назад в личный кабинет</a></p>
+{% endblock %}

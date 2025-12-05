@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Design.pro</title>
+</head>
+<body>
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %}; margin: 10px 0;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'triplcurse/base.html' %}
+{% block content %}
+<h1>Личный кабинет</h1>
+
+<p>Здравствуйте, {{ user.first_name|default:user.username }}!</p>
+
+<form method="get" style="margin: 1em 0;">
+    <label>Показать заявки:</label>
+    <select name="status" onchange="this.form.submit()">
+        <option value="">Все</option>
+        <option value="new" {% if status_filter == 'new' %}selected{% endif %}>Новые</option>
+        <option value="in_progress" {% if status_filter == 'in_progress' %}selected{% endif %}>Принято в работу</option>
+        <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Выполнено</option>
+    </select>
+</form>
+
+{% if applications %}
+    <h2>Ваши заявки</h2>
+    {% for app in applications %}
+        <div style="border: 1px solid #ddd; padding: 12px; margin: 10px 0; border-radius: 4px;">
+            <strong>{{ app.title }}</strong><br>
+            Дата: {{ app.created_at|date:"d.m.Y H:i" }}<br>
+            Категория: {{ app.category }}<br>
+            Статус: {{ app.get_status_display }}<br>
+            Описание: {{ app.description|truncatewords:20 }}
+            {% if app.image %}
+                <br><img src="{{ app.image.url }}" alt="План помещения" width="150" style="margin-top: 8px;">
+            {% endif %}
+
+            {% if app.status == 'new' %}
+                <form method="post" action="{% url 'delete_application' app.id %}" style="display:inline; margin-left:10px;">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('Удалить заявку?')">Удалить</button>
+                </form>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>У вас пока нет заявок.</p>
+{% endif %}
+
+<p>
+    <a href="{% url 'create_application' %}">Создать новую заявку</a> |
+    <a href="{% url 'logout' %}">Выход</a>
+</p>
+{% endblock %}
