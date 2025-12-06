@@ -62,20 +62,6 @@ class UserRegistrationForm(forms.Form):
             raise ValidationError("ФИО должно содержать только кириллические буквы, пробелы и дефисы.")
         return full_name
 
-    def clean_username(self):
-        username = self.cleaned_data['username']
-        if not re.fullmatch(r"[a-zA-Z\-]+", username):
-            raise ValidationError("Логин должен содержать только латинские буквы и дефис.")
-        if User.objects.filter(username=username).exists():
-            raise ValidationError("Пользователь с таким логином уже существует.")
-        return username
-
-    def clean_password2(self):
-        password = self.cleaned_data.get("password")
-        password2 = self.cleaned_data.get("password2")
-        if password and password2 and password != password2:
-            raise ValidationError("Пароли не совпадают.")
-        return password2
 
     def save(self):
         user = User.objects.create_user(
