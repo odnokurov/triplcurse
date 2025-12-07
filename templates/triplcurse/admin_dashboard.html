@@ -1,0 +1,88 @@
+{% extends 'triplcurse/base.html' %}
+{% load static %}
+
+{% block title %}Админ-панель — Design.pro{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Панель администратора</h1>
+    <a href="{% url 'logout' %}" class="btn btn-outline-danger">Выход</a>
+</div>
+    
+<form method="get" class="mb-3">
+    <label>Фильтр по статусу:</label>
+    <select name="status" class="form-select w-auto d-inline" onchange="this.form.submit()">
+        <option value="">Все</option>
+        <option value="new" {% if status_filter == 'new' %}selected{% endif %}>Новые</option>
+        <option value="in_progress" {% if status_filter == 'in_progress' %}selected{% endif %}>Принято в работу</option>
+        <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>Выполнено</option>
+    </select>
+</form>
+    
+<h2>Заявки пользователей</h2>
+{% if applications %}
+    {% for app in applications %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ app.title }}</h5>
+                <p class="card-text">
+                    <small class="text-muted">{{ app.created_at|date:"d.m.Y H:i" }}</small><br>
+                    Пользователь: {{ app.user.first_name|default:app.user.username }}<br>
+                    Категория: {{ app.category }}<br>
+                    Статус: <span class="badge {% if app.status == 'new' %}bg-secondary
+                        {% elif app.status == 'in_progress' %}bg-warning text-dark
+                        {% elif app.status == 'completed' %}bg-success{% endif %}">
+                        {{ app.get_status_display }}
+                    </span><br>
+                    Описание: {{ app.description|truncatewords:15 }}
+                </p>
+
+                {% if app.status == 'new' %}
+                    <form method="post" action="{% url 'update_application_status' app.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <label>Сменить статус:</label><br>
+                            <input type="radio" name="status" value="in_progress" required> Принято в работу
+                            <input type="text" name="admin_comment" class="form-control form-control-sm mt-1" placeholder="Комментарий" required>
+                        </div>
+                        <div class="mb-2">
+                            <input type="radio" name="status" value="completed"> Выполнено
+                            <input type="file" name="design_image" class="form-control form-control-sm mt-1" accept=".jpg,.jpeg,.png,.bmp">
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-primary">Обновить статус</button>
+                    </form>
+                {% elif app.status == 'in_progress' %}
+                    <p class="text-warning"><strong>Комментарий:</strong> {{ app.admin_comment }}</p>
+                {% elif app.status == 'completed' and app.design_image %}
+                    <img src="{{ app.design_image.url }}" class="img-thumbnail mt-2" width="200">
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p class="text-muted">Нет заявок.</p>
+{% endif %}
+    
+<h2 class="mt-5">Управление категориями</h2>
+<form method="post" action="{% url 'add_category' %}" class="mb-3">
+    {% csrf_token %}
+    <div class="input-group">
+        <input type="text" name="name" class="form-control" placeholder="Название новой категории" required>
+        <button class="btn btn-success" type="submit">Добавить</button>
+    </div>
+</form>
+
+<ul class="list-group">
+{% for cat in categories %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ cat.name }}
+        <form method="post" action="{% url 'delete_category' cat.id %}" onsubmit="return confirm('Удалить категорию и ВСЕ её заявки?')">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-outline-danger">Удалить</button>
+        </form>
+    </li>
+{% empty %}
+    <li class="list-group-item text-muted">Нет категорий</li>
+{% endfor %}
+</ul>
+{% endblock %}

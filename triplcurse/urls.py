@@ -17,6 +17,9 @@ urlpatterns = [
     path('applications/create/', views.create_application, name='create_application'),
     path('applications/delete/<int:app_id>/', views.delete_application, name='delete_application'),
     path('profile/', views.user_profile, name='user_profile'),
-    path('applications/create/', views.create_application, name='create_application'),
+    path('admin/', views.admin_dashboard, name='admin_dashboard'),
+    path('admin/application/<int:app_id>/update/', views.update_application_status, name='update_application_status'),
+    path('admin/category/add/', views.add_category, name='add_category'),
+    path('admin/category/delete/<int:cat_id>/', views.delete_category, name='delete_category'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
